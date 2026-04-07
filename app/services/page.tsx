@@ -265,12 +265,7 @@ export default function Services() {
                 <img 
                   src="/pricing-brochure.jpg" 
                   alt="Prop Keep Kerala Pricing Plans" 
-                  className="max-w-full h-auto rounded-lg shadow-2xl"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null; 
-                    target.src = "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80"; // Fallback beautiful house image
-                  }}
+                  className="max-w-full h-auto rounded-lg shadow-2xl border border-stone-800/50"
                 />
               </div>
               <div className="p-4 bg-stone-900/80 text-center border-t border-stone-800/50 relative overflow-hidden">
