@@ -84,7 +84,7 @@ export default function RootLayout({
           <a title="Call Our Expert" href="tel:+910000000000" className="bg-stone-900 text-white p-3.5 lg:p-4 rounded-full shadow-[0_10px_20px_rgba(0,0,0,0.2)] hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)] transition-all duration-300 flex items-center justify-center border border-stone-800">
             <Phone className="w-5 h-5 lg:w-6 lg:h-6" />
           </a>
-          <a title="WhatsApp Support" href="https://wa.me/YOUR_NUMBER" className="bg-gradient-to-tr from-green-600 to-emerald-500 text-white p-3.5 lg:p-4 rounded-full shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(16,185,129,0.4)] transition-all duration-300 flex items-center justify-center">
+          <a title="WhatsApp Support" href="https://wa.me/919495959569" className="bg-gradient-to-tr from-green-600 to-emerald-500 text-white p-3.5 lg:p-4 rounded-full shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(16,185,129,0.4)] transition-all duration-300 flex items-center justify-center">
             <MessageCircle className="w-5 h-5 lg:w-6 lg:h-6" />
           </a>
         </div>

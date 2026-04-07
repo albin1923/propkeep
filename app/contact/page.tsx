@@ -42,7 +42,7 @@ export default function Contact() {
               </div>
               <div>
                 <label className="block text-xs uppercase tracking-wider font-bold text-stone-400 mb-2">WhatsApp Number</label>
-                <input type="tel" className="w-full px-5 py-4 rounded-xl bg-stone-950/50 border border-stone-800 text-white focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 outline-none transition-all placeholder:text-stone-600" placeholder="+91 98765 43210" />
+                <input type="tel" className="w-full px-5 py-4 rounded-xl bg-stone-950/50 border border-stone-800 text-white focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 outline-none transition-all placeholder:text-stone-600" placeholder="+91 9495959569" />
               </div>
               <button type="submit" className="w-full relative group/btn overflow-hidden rounded-xl mt-4">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-500 transition-transform group-hover/btn:scale-105 duration-500"></div>
@@ -77,9 +77,14 @@ export default function Contact() {
              <div className="absolute top-0 left-0 w-32 h-32 bg-stone-500/5 blur-[50px] group-hover:bg-stone-500/10 transition-colors duration-500"></div>
             <h3 className="text-xl font-bold text-white mb-2 relative z-10">Other Services</h3>
             <p className="text-stone-400 mb-6 font-light relative z-10">Want us to inspect specific issues? We handle end-to-end maintenance.</p>
-            <button className="relative z-10 bg-stone-900 hover:bg-stone-800 text-stone-200 font-bold py-3 px-6 rounded-full transition-all border border-stone-700/50 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-               General Inquiry Call
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full sm:w-auto">
+              <a href="mailto:propkeepkerala@gmail.com" className="inline-flex items-center justify-center bg-stone-900 hover:bg-stone-800 text-stone-200 font-bold py-3 px-6 rounded-full transition-all border border-stone-700/50 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                propkeepkerala@gmail.com
+              </a>
+              <a href="tel:+919495959569" className="inline-flex items-center justify-center bg-stone-900 hover:bg-stone-800 text-stone-200 font-bold py-3 px-6 rounded-full transition-all border border-stone-700/50 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                Call: +91 9495959569
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

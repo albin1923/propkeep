@@ -53,7 +53,7 @@ export default function Navigation() {
         
         <div className="hidden lg:flex items-center gap-4">
           <a 
-            href="https://wa.me/YOUR_NUMBER" 
+            href="https://wa.me/919495959569" 
             className={`px-6 py-2.5 rounded-full transition-all shadow-lg font-bold text-sm lg:whitespace-nowrap transform hover:-translate-y-0.5 ${
               scrolled 
                 ? "bg-stone-900 hover:bg-amber-600 text-white" 
@@ -103,7 +103,7 @@ export default function Navigation() {
           </div>
           
           <div className="pb-12 border-t border-stone-100 pt-8">
-            <a href="https://wa.me/YOUR_NUMBER" className="bg-stone-900 shadow-[0_10px_30px_rgba(0,0,0,0.15)] text-white text-center py-4 rounded-2xl font-bold uppercase tracking-widest text-sm w-full block active:scale-95 transition-transform" onClick={closeMenu}>
+            <a href="https://wa.me/919495959569" className="bg-stone-900 shadow-[0_10px_30px_rgba(0,0,0,0.15)] text-white text-center py-4 rounded-2xl font-bold uppercase tracking-widest text-sm w-full block active:scale-95 transition-transform" onClick={closeMenu}>
               Book NRI Audit
             </a>
           </div>
