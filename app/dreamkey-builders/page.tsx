@@ -71,7 +71,7 @@ export default function DreamkeyBuilders() {
         
         <div className="flex-1 w-full bg-stone-950/80 border border-stone-800 rounded-3xl p-10 text-center text-white relative overflow-hidden h-[450px] flex flex-col justify-center perspective-1000">
           <motion.div 
-             initial={{ rotatey: -10 }}
+             initial={{ rotateY: -10 }}
              whileHover={{ rotateY: 0, scale: 1.05 }}
              transition={{ duration: 0.5 }}
              className="z-10 relative space-y-6"
