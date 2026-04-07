@@ -41,9 +41,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${jakarta.className} bg-[#fdfcfb] text-stone-900 min-h-screen flex flex-col antialiased relative`}>
+      <body className={`${jakarta.className} bg-transparent text-stone-200 min-h-screen flex flex-col antialiased relative`}>
         {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 z-[-1] pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#444 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+        <div className="complex-bg"></div>
         
         <Navigation />
         
