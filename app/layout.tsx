@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { Phone, MessageCircle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
   title: "Prop Keep | Premium NRI Property Management in Kerala",
@@ -40,8 +41,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${jakarta.className} bg-transparent text-stone-200 min-h-screen flex flex-col antialiased relative`}>
+    <html lang="en" className={`${outfit.variable} ${playfair.variable} scroll-smooth`}>
+      <body className="font-sans bg-transparent text-stone-200 min-h-screen flex flex-col antialiased relative selection:bg-amber-500/30 selection:text-amber-200">
         {/* Subtle Background Pattern */}
         <div className="complex-bg"></div>
         

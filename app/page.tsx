@@ -68,7 +68,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <motion.div 
             initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.25 }}
+            animate={{ scale: 1, opacity: 0.6 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
             className="absolute inset-0"
           >
@@ -82,8 +82,8 @@ export default function Home() {
           </motion.div>
           
           {/* Gradients to blend image smoothly */}
-          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-950/90 via-transparent to-stone-950/90 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-950/80 via-transparent to-stone-950/80 z-10"></div>
 
           {/* Floating animated components */}
           <motion.div 
@@ -122,19 +122,19 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-4xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-stone-700 bg-stone-900/50 backdrop-blur-sm mb-6 text-sm text-stone-300">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-stone-700 bg-stone-900/50 backdrop-blur-sm mb-6 text-sm text-stone-300 font-sans">
               <Key className="w-4 h-4 text-amber-500" />
               <span>Dedicated Property Management for NRIs</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-black mb-6 tracking-tight leading-tight">
               Your Kerala Home, <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">
                 Safe & Pristine
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-stone-300 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-stone-300 font-light mb-10 max-w-2xl mx-auto leading-relaxed font-sans">
               Total peace of mind while you are abroad. From comprehensive health audits and pest control to scheduled maintenance, we take absolute care of your vacant property.
             </p>
             
