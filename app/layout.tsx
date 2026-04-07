@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Playfair_Display } from "next/font/google";
+import { Outfit, Playfair_Display, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { Phone, MessageCircle } from "lucide-react";
@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
 
 export const metadata: Metadata = {
   title: "Prop Keep | Premium NRI Property Management in Kerala",
@@ -41,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${playfair.variable} scroll-smooth`}>
+    <html lang="en" className={`${outfit.variable} ${playfair.variable} ${spaceGrotesk.variable} scroll-smooth`}>
       <body className="font-sans bg-transparent text-stone-200 min-h-screen flex flex-col antialiased relative selection:bg-amber-500/30 selection:text-amber-200">
         {/* Subtle Background Pattern */}
         <div className="complex-bg"></div>

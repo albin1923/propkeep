@@ -60,13 +60,13 @@ export default function Services() {
           <div className="glass-panel p-8 rounded-[2rem] border border-stone-800 hover:border-amber-500/30 hover:-translate-y-2 transition-all duration-500 flex flex-col relative group">
             <h3 className="text-2xl font-black text-amber-500 mb-2 font-serif">ESSENTIAL</h3>
             <p className="text-stone-400 text-sm mb-6 pb-6 border-b border-stone-800 font-sans">Best For: Locked Plots / Apartments</p>
-            <div className="mb-8">
-              <span className="text-4xl font-black text-white font-serif">₹18,000</span>
+            <div className="mb-8 font-number">
+              <span className="text-4xl font-black text-white">₹18,000</span>
               <span className="text-stone-500 text-sm ml-2 font-sans">/ year (starts at)</span>
             </div>
             <ul className="space-y-4 mb-8 flex-grow font-sans text-stone-300">
-              <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> 1 Visit / Month</li>
-              <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> 50-Point Health Audit</li>
+              <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> <span className="font-number font-bold">1</span> Visit / Month</li>
+              <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> <span className="font-number font-bold">50</span>-Point Health Audit</li>
               <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> Bill & Tax Payments</li>
               <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> Monsoon Prep Check</li>
               <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> Interior Airing Out</li>
@@ -76,20 +76,20 @@ export default function Services() {
           </div>
 
           {/* Premium Plan (Highlighted) */}
-          <div className="glass-card p-10 rounded-[2.5rem] border border-amber-500/50 hover:shadow-[0_0_40px_rgba(217,119,6,0.15)] hover:-translate-y-4 transition-all duration-500 flex flex-col relative z-10 transform scale-105">
+          <div className="glass-card p-10 rounded-[2.5rem] border border-amber-500/50 hover:shadow-[0_0_40px_rgba(217,119,6,0.15)] hover:-translate-y-4 transition-all duration-500 flex flex-col relative z-10 transform lg:scale-105">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-amber-600 to-amber-400 text-stone-950 font-black text-xs uppercase px-4 py-1.5 rounded-full tracking-widest shadow-lg">Most Popular</div>
             <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 mb-2 font-serif">PREMIUM</h3>
             <p className="text-stone-300 text-sm mb-6 pb-6 border-b border-stone-800/50 font-sans">Best For: Independent Villas</p>
-            <div className="mb-8">
-              <span className="text-5xl font-black text-white font-serif">₹32,000</span>
+            <div className="mb-8 font-number">
+              <span className="text-5xl font-black text-white">₹32,000</span>
               <span className="text-stone-400 text-sm ml-2 font-sans">/ year</span>
             </div>
             <ul className="space-y-4 mb-8 flex-grow font-sans text-stone-200">
-              <li className="flex items-center gap-3"><strong className="text-amber-400">✓</strong> 2 Visits / Month</li>
+              <li className="flex items-center gap-3"><strong className="text-amber-400">✓</strong> <span className="font-number font-bold">2</span> Visits / Month</li>
               <li className="flex items-center gap-3"><strong className="text-amber-400">✓</strong> Everything in Essential</li>
               <li className="flex items-center gap-3"><strong className="text-amber-400">✓</strong> Cobweb & Dust (Quarterly)</li>
               <li className="flex items-center gap-3 bg-amber-500/10 p-2 rounded-lg -ml-2"><strong className="text-amber-400">✓</strong> Pest Control Oversight</li>
-              <li className="flex items-center gap-3 bg-amber-500/10 p-2 rounded-lg -ml-2"><strong className="text-amber-400">✓</strong> Pre-Arrival Cleaning (1/Year)</li>
+              <li className="flex items-center gap-3 bg-amber-500/10 p-2 rounded-lg -ml-2"><strong className="text-amber-400">✓</strong> Pre-Arrival Cleaning (<span className="font-number font-bold">1</span>/Year)</li>
               <li className="flex items-center gap-3"><strong className="text-amber-400">✓</strong> Key Holding Service</li>
               <li className="flex items-center gap-3"><strong className="text-amber-400">✓</strong> Yard/Garden Cleanup (Monthly)</li>
             </ul>
@@ -100,12 +100,12 @@ export default function Services() {
           <div className="glass-panel p-8 rounded-[2rem] border border-stone-800 hover:border-amber-500/30 hover:-translate-y-2 transition-all duration-500 flex flex-col relative group">
             <h3 className="text-2xl font-black text-amber-500 mb-2 font-serif">CONCIERGE</h3>
             <p className="text-stone-400 text-sm mb-6 pb-6 border-b border-stone-800 font-sans">Best For: Luxury Estates</p>
-            <div className="mb-8">
-              <span className="text-4xl font-black text-white font-serif">₹55,000</span>
+            <div className="mb-8 font-number">
+              <span className="text-4xl font-black text-white">₹55,000</span>
               <span className="text-stone-500 text-sm ml-2 font-sans">/ year</span>
             </div>
             <ul className="space-y-4 mb-8 flex-grow font-sans text-stone-300">
-              <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> 4 Visits / Month</li>
+              <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> <span className="font-number font-bold">4</span> Visits / Month</li>
               <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> Everything in Premium</li>
               <li className="flex items-center gap-3"><strong className="text-amber-500">✓</strong> Cobweb & Dust (Monthly)</li>
               <li className="flex items-center gap-3 text-white"><strong className="text-amber-500">✓</strong> Pre-Arrival Cleaning (Unlimited)</li>

@@ -164,15 +164,15 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-stone-800/50">
             <div className="text-center px-4">
-              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2">50+</p>
+              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2 font-number">50+</p>
               <p className="text-sm uppercase tracking-wider font-semibold">Point Audit</p>
             </div>
             <div className="text-center px-4">
-              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2">100%</p>
+              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2 font-number">100%</p>
               <p className="text-sm uppercase tracking-wider font-semibold">NRI Focus</p>
             </div>
             <div className="text-center px-4">
-              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2">24/7</p>
+              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2 font-number">24/7</p>
               <p className="text-sm uppercase tracking-wider font-semibold">Surveillance Setup</p>
             </div>
             <div className="text-center px-4">
