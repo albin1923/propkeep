@@ -113,33 +113,27 @@ export default function Home() {
                 >
                   Contact Us
                 </Link>
-                <Link
-                  href="/services"
-                  className="px-8 py-3.5 bg-white border-2 border-stone-200 hover:border-teal-500 hover:text-teal-600 text-stone-700 font-bold rounded-lg transition-all text-center"
-                >
-                  Explore Services
-                </Link>
               </div>
             </motion.div>
           </div>
-        </div>
 
-        {/* Mobile Slideshow */}
-        <div className="w-full h-[50vh] relative z-10 rounded-2xl overflow-hidden lg:hidden mt-8">
-          <div className="overflow-hidden h-full" ref={emblaRef}>
-            <div className="flex h-full touch-pan-y">
-              {carouselImages.map((src, index) => (
-                <div className="flex-[0_0_100%] min-w-0 h-full relative" key={index}>
-                  <Image
-                    src={src}
-                    alt="Propkeep Services"
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
-                  />
-                  <div className="absolute inset-0 bg-teal-900/5 mix-blend-multiply"></div>
-                </div>
-              ))}
+          {/* Mobile Slideshow */}
+          <div className="w-full h-[40vh] sm:h-[50vh] relative z-10 rounded-2xl overflow-hidden lg:hidden mt-8 mb-12 shadow-xl">
+            <div className="overflow-hidden h-full" ref={emblaRef}>
+              <div className="flex h-full touch-pan-y">
+                {carouselImages.map((src, index) => (
+                  <div className="flex-[0_0_100%] min-w-0 h-full relative" key={index}>
+                    <Image
+                      src={src}
+                      alt="Propkeep Services"
+                      fill
+                      className="object-cover"
+                      priority={index === 0}
+                    />
+                    <div className="absolute inset-0 bg-teal-900/5 mix-blend-multiply"></div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

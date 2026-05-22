@@ -164,7 +164,7 @@ export default function RootLayout({
         </footer>
 
         {/* Floating Actions */}
-        <div className="fixed bottom-6 right-4 lg:right-8 z-50 flex flex-col gap-4">
+        <div className="fixed bottom-6 right-4 lg:right-8 z-40 flex flex-col gap-4">
           <a title="Call Our Expert" href="tel:+919495959569" className="bg-stone-900 text-white p-3.5 lg:p-4 rounded-full shadow-[0_10px_20px_rgba(0,0,0,0.2)] hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)] transition-all duration-300 flex items-center justify-center border border-stone-800">
             <Phone className="w-5 h-5 lg:w-6 lg:h-6" />
           </a>
