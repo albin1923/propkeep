@@ -1,365 +1,552 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, Home as HomeIcon, Sparkles, CheckCircle2, Search, MapPin, Key, Clock, Shield } from "lucide-react";
+import { ArrowRight, ShieldCheck, HeartPulse, Home as HomeIcon, CheckCircle2, Check, Phone, MessageCircle, Building2, Scale, Clock, Star, Users, TrendingUp, Eye, Newspaper, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
+
+function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting && !started) setStarted(true); },
+      { threshold: 0.5 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+    const duration = 2000;
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) { setCount(target); clearInterval(timer); }
+      else setCount(Math.floor(current));
+    }, duration / steps);
+    return () => clearInterval(timer);
+  }, [started, target]);
+
+  return <div ref={ref} className="text-4xl md:text-5xl font-black text-teal-600 font-number">{count}{suffix}</div>;
+}
 
 export default function Home() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [emblaRef] = useEmblaCarousel({ loop: true, duration: 40 }, [
+    Autoplay({ delay: 4000, stopOnInteraction: false }),
+    Fade()
+  ]);
 
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
-
-  const stagger = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const services = [
-    {
-      title: "Comprehensive Security Checks",
-      description: "Routine physical inspections of all entry points, perimeter, and interiors to ensure your property remains untampered.",
-      icon: Shield,
-      image: "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Pest & Termite Control",
-      description: "Regular pest treatments to prevent infestations that can ruin woodwork and interiors of closed houses.",
-      icon: Search,
-      image: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Deep Cleaning & Maintenance",
-      description: "Scheduled professional cleaning routines so your house is in pristine condition whenever you arrive.",
-      icon: Sparkles,
-      image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "50-Point Property Audit",
-      description: "Detailed monthly reports covering plumbing, electricals, moisture levels, structural integrity, and more.",
-      icon: ShieldCheck,
-      image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    }
-  ];
-
-  const checklist = [
-    "Interior & Exterior Inspection",
-    "Leak & Moisture Check",
-    "Security & Lock Assessment",
-    "Pest & Termite Screening",
-    "Landscape Maintenance",
-    "Appliance Functionality",
-    "Electrical System Check"
+  const carouselImages = [
+    "/images/hero-deep-cleaning.png",
+    "/images/hero-senior-care.png",
+    "/images/hero-property-mgmt.png",
+    "/images/hero-elderly-comfort.png",
   ];
 
   return (
-    <div className="flex flex-col min-h-screen z-10 relative">
-      {/* Hero Section */}
-      <section className="relative h-[95vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background Image - Kerala House & Decorative Components */}
-        <div className="absolute inset-0 z-0">
-          <motion.div 
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 2.5, ease: "easeOut" }}
-            className="absolute inset-0"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1494526585095-c41746248156?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=75"
-              alt="Beautiful Kerala architecture home"
-              fill
-              className="object-cover object-center"
-              priority
-            />
-          </motion.div>
+    <div className="flex flex-col min-h-screen z-10 relative bg-white overflow-hidden text-stone-800">
+
+      {/* ============ HERO SECTION ============ */}
+      <section className="relative min-h-[90vh] lg:h-screen flex items-center bg-gradient-to-br from-stone-50 via-white to-teal-50/30 overflow-hidden">
+        {/* Right Slideshow - positioned absolutely to fill right half to viewport edge */}
+        <div className="hidden lg:block absolute right-0 top-0 w-[58%] h-full z-10 overflow-hidden">
+          <div className="absolute inset-0 z-20 bg-gradient-to-r from-stone-50 via-stone-50/60 to-transparent w-[35%] pointer-events-none"></div>
+          <div className="absolute inset-0 z-20 bg-gradient-to-t from-stone-50/80 via-transparent to-transparent h-[15%] bottom-0 top-auto pointer-events-none"></div>
+          <div className="absolute inset-0 z-20 bg-gradient-to-b from-stone-50/40 via-transparent to-transparent h-[10%] pointer-events-none"></div>
           
-          {/* Gradients to blend image smoothly */}
-          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-950/80 via-transparent to-stone-950/80 z-10"></div>
-
-          {/* Floating animated components */}
-          <motion.div 
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[25%] left-[5%] xl:left-[10%] z-20 hidden md:flex items-center gap-3 px-5 py-3 glass-panel border border-amber-500/20 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
-          >
-            <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
-              <ShieldCheck className="w-5 h-5 text-amber-500" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs text-stone-400 font-medium">Property Status</p>
-              <p className="text-sm text-stone-200 font-semibold">100% Secured</p>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            animate={{ y: [0, 20, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-[30%] right-[5%] xl:right-[10%] z-20 hidden md:flex items-center gap-3 px-5 py-3 glass-panel border border-emerald-500/20 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
-          >
-            <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-              <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-            </div>
-            <div className="text-left">
-              <p className="text-xs text-stone-400 font-medium">Monthly Audit</p>
-              <p className="text-sm text-stone-200 font-semibold">Completed</p>
-            </div>
-          </motion.div>
-        </div>
-
-        <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white mt-16">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-stone-700 bg-stone-900/50 backdrop-blur-sm mb-6 text-sm text-stone-300 font-sans">
-              <Key className="w-4 h-4 text-amber-500" />
-              <span>Dedicated Property Management for NRIs</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-black mb-6 tracking-tight leading-tight">
-              Your Kerala Home, <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">
-                Safe & Pristine
-              </span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-stone-300 font-light mb-10 max-w-2xl mx-auto leading-relaxed font-sans">
-              Total peace of mind while you are abroad. From comprehensive health audits and pest control to scheduled maintenance, we take absolute care of your vacant property.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                href="/contact"
-                className="group relative px-8 py-4 bg-amber-600 hover:bg-amber-500 text-stone-950 font-semibold rounded-full overflow-hidden transition-all shadow-[0_0_40px_rgba(217,119,6,0.2)]"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Schedule A Callback
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-              <Link
-                href="/services"
-                className="px-8 py-4 bg-transparent border border-stone-500 hover:bg-stone-800 text-white font-medium rounded-full transition-all"
-              >
-                View Management Plans
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Trust & Stats Section */}
-      <section className="bg-stone-950/50 backdrop-blur-md py-16 text-stone-300 border-y border-stone-800/50 relative z-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-stone-800/50">
-            <div className="text-center px-4">
-              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2 font-number">50+</p>
-              <p className="text-sm uppercase tracking-wider font-semibold">Point Audit</p>
-            </div>
-            <div className="text-center px-4">
-              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2 font-number">100%</p>
-              <p className="text-sm uppercase tracking-wider font-semibold">NRI Focus</p>
-            </div>
-            <div className="text-center px-4">
-              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2 font-number">24/7</p>
-              <p className="text-sm uppercase tracking-wider font-semibold">Surveillance Setup</p>
-            </div>
-            <div className="text-center px-4">
-              <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2">AAA</p>
-              <p className="text-sm uppercase tracking-wider font-semibold">Quality Service</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-24 relative z-20 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-600/5 blur-[100px] rounded-full"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-stone-500/10 blur-[100px] rounded-full"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-amber-500 font-bold tracking-widest uppercase text-sm mb-3 border-b border-amber-500/30 inline-block pb-1">Our Core Services</h2>
-            <h3 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-stone-200 to-stone-400 mb-6">Uncompromising Property Care</h3>
-            <p className="text-stone-400 max-w-2xl mx-auto text-lg leading-relaxed font-light">
-              Homes left unattended fall prey to pests, dampness, and degradation. Our systematic approach ensures your property retains its value and beauty.
-            </p>
-          </div>
-
-          <motion.div 
-            variants={stagger}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 perspective-1000"
-          >
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                variants={fadeIn}
-                whileHover={{ scale: 1.02, rotateY: 5 }}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-                className="group relative h-[400px] rounded-[2rem] overflow-hidden cursor-pointer border border-stone-800 hover:border-amber-500/30 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_40px_rgba(217,119,6,0.15)] transition-all duration-500"
-              >
-                <div className="absolute inset-0">
+          <div className="overflow-hidden h-full w-full" ref={emblaRef}>
+            <div className="flex h-full touch-pan-y">
+              {carouselImages.map((src, index) => (
+                <div className="flex-[0_0_100%] min-w-0 h-full relative" key={index}>
                   <Image
-                    src={service.image}
-                    alt={service.title}
+                    src={src}
+                    alt="Propkeep Services"
                     fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    className="object-cover object-center"
+                    sizes="58vw"
+                    priority={index === 0}
                   />
-                  <div className={`absolute inset-0 bg-stone-950/80 transition-opacity duration-500 ${hoveredCard === index ? 'opacity-95' : 'opacity-60'}`}></div>
-                  <div className={`absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-transparent transition-opacity duration-500 ${hoveredCard === index ? 'opacity-100' : 'opacity-80'}`}></div>
+                  <div className="absolute inset-0 bg-teal-900/5 mix-blend-multiply"></div>
                 </div>
-                
-                <div className="relative h-full flex flex-col justify-end p-8 z-10 transition-transform duration-500 group-hover:-translate-y-2">
-                  <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center mb-6 transition-all duration-500 ${hoveredCard === index ? 'bg-amber-500/20 border-amber-500/50 shadow-[0_0_15px_rgba(217,119,6,0.3)]' : 'bg-stone-900/50 border-stone-700/50 backdrop-blur-md'}`}>
-                    <service.icon className={`w-6 h-6 transition-colors duration-500 ${hoveredCard === index ? 'text-amber-400' : 'text-stone-300'}`} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-4 md:px-8 xl:px-12 flex flex-col lg:flex-row items-center gap-8 h-full relative z-20">
+          {/* Left Content */}
+          <div className="w-full lg:w-[45%] flex flex-col justify-center pt-24 lg:pt-0">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <div className="section-label mb-6">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Integrated Solutions for NRIs</span>
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl xl:text-[3.5rem] font-serif font-black mb-6 text-stone-900 leading-[1.15]">
+                Solution.<br />
+                <span className="text-teal-600">Safeguard Your Most</span>{" "}
+                <span className="text-amber-500">Valuable Assets</span>
+              </h1>
+              
+              <p className="text-lg text-stone-600 mb-8 max-w-xl leading-relaxed">
+                We understand the silent worry of living abroad while your parents and property are back home. Propkeep Kerala is your single, trusted partner, offering an integrated system of compassionate senior care, secure property management, and expert legal protection — all designed to protect your legacy and loved ones.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/contact"
+                  className="px-8 py-3.5 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white font-bold rounded-lg transition-all shadow-lg shadow-teal-600/20 text-center"
+                >
+                  Contact Us
+                </Link>
+                <Link
+                  href="/services"
+                  className="px-8 py-3.5 bg-white border-2 border-stone-200 hover:border-teal-500 hover:text-teal-600 text-stone-700 font-bold rounded-lg transition-all text-center"
+                >
+                  Explore Services
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Mobile Slideshow */}
+        <div className="w-full h-[50vh] relative z-10 rounded-2xl overflow-hidden lg:hidden mt-8">
+          <div className="overflow-hidden h-full" ref={emblaRef}>
+            <div className="flex h-full touch-pan-y">
+              {carouselImages.map((src, index) => (
+                <div className="flex-[0_0_100%] min-w-0 h-full relative" key={index}>
+                  <Image
+                    src={src}
+                    alt="Propkeep Services"
+                    fill
+                    className="object-cover"
+                    priority={index === 0}
+                  />
+                  <div className="absolute inset-0 bg-teal-900/5 mix-blend-multiply"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ STATS COUNTER BAR ============ */}
+      <section className="py-16 bg-white border-y border-stone-100">
+        <div className="container mx-auto px-4 md:px-8 xl:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+            {[
+              { target: 98, suffix: "%", label: "Service Reliability" },
+              { target: 95, suffix: "%", label: "Property Management Quality" },
+              { target: 97, suffix: "%", label: "Care & Legal Efficiency" },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center gap-3">
+                <AnimatedCounter target={stat.target} suffix={stat.suffix} />
+                <p className="text-stone-500 font-semibold uppercase tracking-widest text-sm">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ ABOUT US SECTION ============ */}
+      <section className="py-24 bg-stone-50">
+        <div className="container mx-auto px-4 md:px-8 xl:px-12">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <div className="section-label mx-auto w-fit mb-4">About Us</div>
+            <h2 className="text-3xl md:text-5xl font-serif font-black text-stone-900 mb-6">
+              A Synchronized System for Your Home, Health & Heritage
+            </h2>
+            <p className="text-stone-600 text-lg leading-relaxed">
+              Living abroad shouldn&apos;t mean worrying about home. Propkeep Kerala was created for the NRI community to provide a single, reliable solution. We uniquely merge vital services: compassionate senior care, diligent property management, and expert legal protection.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="bg-white p-8 rounded-2xl border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-300"
+            >
+              <div className="w-14 h-14 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center mb-5">
+                <Building2 className="w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-bold text-stone-900 mb-3">Expert Property Oversight</h3>
+              <p className="text-stone-600 leading-relaxed">
+                Our expertise ensures your assets and property are protected with professional management, regular inspections, and comprehensive maintenance support.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+              className="bg-white p-8 rounded-2xl border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-300"
+            >
+              <div className="w-14 h-14 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-5">
+                <HeartPulse className="w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-bold text-stone-900 mb-3">Compassionate Senior Care</h3>
+              <p className="text-stone-600 leading-relaxed">
+                We provide integrated care with verified professionals, ensuring the comfort, dignity, and well-being of your loved ones with regular health check-ups and companionship.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-6 items-center justify-center mb-16">
+            <Link href="/about" className="px-8 py-3.5 bg-gradient-to-r from-teal-600 to-teal-500 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all">
+              More About Us
+            </Link>
+            <a href="tel:+919495959569" className="text-teal-600 font-bold text-lg hover:text-teal-700 transition-colors flex items-center gap-2">
+              <Phone className="w-5 h-5" /> +91 94959 59569
+            </a>
+          </div>
+
+          {/* Legacy Trust Block */}
+          <div className="bg-gradient-to-r from-teal-600 to-cyan-600 rounded-2xl p-8 md:p-12 text-white text-center max-w-3xl mx-auto">
+            <h3 className="text-2xl font-bold mb-3">A Legacy You Can Trust</h3>
+            <p className="text-teal-100 text-lg">
+              We bring professional-grade property care and comprehensive senior wellness services to your home in Kerala, trusted by NRI families worldwide.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ SERVICES SECTION ============ */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 md:px-8 xl:px-12">
+          <div className="text-center mb-6">
+            <div className="section-label mx-auto w-fit mb-4">Services</div>
+          </div>
+          <p className="text-stone-600 text-lg text-center max-w-3xl mx-auto mb-16 leading-relaxed">
+            Propkeep Kerala offers a trusted, synchronized system of property, legal, and senior care management. Designed to care for your loved ones and your home with warmth, responsibility, and dignity.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <HomeIcon className="w-8 h-8" />,
+                title: "Complete Property Management",
+                desc: "Utility payments, periodic inspections, maintenance supervision, and tenant management — keeping your property in perfect condition.",
+                img: "/images/service-property-care.png",
+              },
+              {
+                icon: <HeartPulse className="w-8 h-8" />,
+                title: "Senior Care Support and Wellness",
+                desc: "Verified caregivers, medication management, routine health checkups, and mental wellness support for your elderly loved ones.",
+                img: "/images/service-senior-wellness.png",
+              },
+              {
+                icon: <Scale className="w-8 h-8" />,
+                title: "Legal Assistance for Family Security",
+                desc: "Property documentation, legal disputes, family asset protection, and comprehensive legal advisory services.",
+                img: "/images/service-legal-docs.png",
+              },
+            ].map((service, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="service-card bg-white rounded-2xl border border-stone-100 shadow-sm overflow-hidden group"
+              >
+                <div className="h-48 relative overflow-hidden">
+                  <Image src={service.img} alt={service.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <div className="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center mb-4 -mt-12 relative z-10 shadow-lg border-2 border-white">
+                    {service.icon}
                   </div>
-                  <h4 className="text-2xl font-bold text-white mb-3 tracking-wide">{service.title}</h4>
-                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${hoveredCard === index ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
-                    <p className="text-stone-400 text-sm leading-relaxed font-light border-l-2 border-amber-500/50 pl-3">
-                      {service.description}
-                    </p>
-                  </div>
+                  <h3 className="text-xl font-bold text-stone-900 mb-3">{service.title}</h3>
+                  <p className="text-stone-600 mb-4">{service.desc}</p>
+                  <Link href="/services" className="text-teal-600 font-semibold hover:text-teal-700 flex items-center gap-1 text-sm">
+                    Read More <ChevronRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
+
+          <div className="text-center mt-10">
+            <Link href="/services" className="text-teal-600 font-bold hover:text-teal-700 inline-flex items-center gap-2">
+              View All Services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* 50-Point Audit Section */}
-      <section className="py-24 relative z-20 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-stone-900/50 skew-y-3 -z-10 border-y border-stone-800"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <motion.div 
-              initial={{ opacity: 0, x: -50, rotateY: -10 }}
-              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, type: "spring" }}
-              className="lg:w-1/2 perspective-1000"
-            >
-              <div className="relative rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(217,119,6,0.1)] border border-stone-800 group">
-                <Image
-                  src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                  alt="Property Audit Kerala"
-                  width={800}
-                  height={600}
-                  className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-stone-950/40 mix-blend-multiply transition-opacity duration-1000 group-hover:opacity-20"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-transparent"></div>
-                
-                {/* Floating badge */}
-                <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-emerald-500/10 blur-[40px] rounded-full hidden md:block"></div>
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 0.5, type: "spring" }}
-                  className="absolute bottom-8 right-8 glass-panel p-8 rounded-3xl shadow-[0_0_30px_rgba(0,0,0,0.8)] border border-emerald-500/30 hidden md:block backdrop-blur-xl"
-                >
-                  <p className="text-5xl font-black mb-1 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-emerald-600">50+</p>
-                  <p className="text-xs font-bold uppercase tracking-widest text-stone-300">Parameters<br/>Checked</p>
-                </motion.div>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, type: "spring" }}
-              className="lg:w-1/2"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <span className="h-px w-10 bg-amber-500 inline-block"></span>
-                <h2 className="text-amber-500 font-bold tracking-widest uppercase text-sm">Our Signature Service</h2>
-              </div>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-stone-400 leading-tight">The Prop Keep <br/>Health Audit</h3>
-              <p className="text-stone-300 mb-10 leading-relaxed text-xl font-light">
-                We don't just <span className="italic">"look after"</span> your home. We systematically evaluate its health every month, compiling transparent reports with photographic evidence. From hidden leaks to pest breeding grounds, we spot issues before they become expensive problems.
+      {/* ============ WHY CHOOSE US ============ */}
+      <section className="py-24 bg-stone-50">
+        <div className="container mx-auto px-4 md:px-8 xl:px-12">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="lg:w-1/2">
+              <div className="section-label mb-4">Why Choose Us</div>
+              <p className="text-stone-600 text-lg mb-10 leading-relaxed">
+                We are the single, trusted partner NRIs need. We blend compassionate senior care with expert property management and legal protection, offering complete peace of mind for your family and assets in Kerala.
               </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mb-12">
-                {checklist.map((item, index) => (
-                  <motion.div 
-                    key={index} 
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.5 }}
-                    className="flex items-center gap-4 text-stone-300 group"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-stone-900 border border-stone-800 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500/20 group-hover:border-amber-500/50 transition-colors duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)]">
-                      <CheckCircle2 className="w-4 h-4 text-amber-500" />
+              <a href="tel:+919495959569" className="px-8 py-3.5 bg-gradient-to-r from-teal-600 to-teal-500 text-white font-bold rounded-lg shadow-lg inline-flex items-center gap-2">
+                <Phone className="w-4 h-4" /> Contact Us
+              </a>
+            </div>
+            <div className="lg:w-1/2 space-y-8">
+              {[
+                { icon: <Star className="w-6 h-6" />, title: "Proven Care Legacy", desc: "We provide expert care services, from home wellness to assisted living, backed by years of experience." },
+                { icon: <Scale className="w-6 h-6" />, title: "Property & Legal Expertise", desc: "Expert property law knowledge, documentation management, and senior legal protection for your assets." },
+                { icon: <Eye className="w-6 h-6" />, title: "Total Property Management", desc: "Daily supervision, maintenance, tenant management, and regular video reports to protect your property value." },
+              ].map((item, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                  className="feature-block pl-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center flex-shrink-0">
+                      {item.icon}
                     </div>
-                    <span className="font-light tracking-wide">{item}</span>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center gap-3 glass-panel hover:bg-stone-900 border border-amber-500/30 text-amber-500 hover:text-amber-400 font-bold uppercase tracking-widest text-xs transition-all px-8 py-4 rounded-full shadow-[0_0_20px_rgba(217,119,6,0.15)] hover:shadow-[0_0_30px_rgba(217,119,6,0.25)] group"
-              >
-                Explore Full Audit Details
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-              </Link>
-            </motion.div>
+                    <div>
+                      <h3 className="text-xl font-bold text-stone-900 mb-2">{item.title}</h3>
+                      <p className="text-stone-600">{item.desc}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-      
-      {/* Target Audience / Call to Action */}
-      <section className="py-32 relative z-20 overflow-hidden perspective-1000">
-         <div className="absolute inset-0 bg-stone-950 z-0"></div>
-         <div className="absolute inset-0 bg-gradient-to-t from-amber-600/10 via-transparent to-transparent z-10"></div>
-         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-600/5 blur-[120px] rounded-full z-10"></div>
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95, rotateX: 5 }}
-          whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, type: "spring" }}
-          className="container mx-auto px-4 text-center relative z-20 max-w-4xl"
-        >
-          <div className="glass-panel p-12 md:p-20 rounded-[4rem] border border-amber-500/20 shadow-[0_0_50px_rgba(217,119,6,0.1)] group relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-stone-500/10 blur-[80px] rounded-full group-hover:bg-amber-500/10 transition-colors duration-1000"></div>
-            <motion.div
-               animate={{ y: [0, -10, 0] }}
-               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               className="w-24 h-24 rounded-full glass-card mx-auto flex items-center justify-center mb-10 border border-amber-500/30 shadow-[0_0_20px_rgba(217,119,6,0.3)] backdrop-blur-xl group-hover:shadow-[0_0_30px_rgba(217,119,6,0.5)] transition-all duration-1000"
-            >
-               <MapPin className="w-10 h-10 text-amber-500" />
-            </motion.div>
-            <h2 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-stone-400 mb-8 leading-tight">Are you an NRI<br/>from Kerala?</h2>
-            <p className="text-xl text-stone-300 mx-auto mb-12 leading-relaxed font-light tracking-wide max-w-2xl text-center">
-              Distance shouldn't mean compromise. Entrust your valuable real estate to professionals who treat your property with the same care and respect as you would. <span className="font-medium text-amber-500">Give your home the Prop Keep standard.</span>
+
+      {/* ============ PACKAGES / PROJECTS ============ */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 md:px-8 xl:px-12">
+          <div className="text-center mb-16">
+            <div className="section-label mx-auto w-fit mb-4">Our Packages</div>
+            <h2 className="text-3xl md:text-5xl font-serif font-black text-stone-900 mb-4">Tailored Plans for Every Need</h2>
+            <p className="text-stone-600 text-lg max-w-3xl mx-auto">
+              Explore our specialized plans designed to give NRIs peace of mind. Whether you need dedicated eldercare, daily property supervision, or 24/7 nursing, we have a tailored plan.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-stone-950 font-black tracking-widest uppercase text-xs rounded-full overflow-hidden transition-all shadow-[0_0_30px_rgba(217,119,6,0.3)] hover:shadow-[0_0_50px_rgba(217,119,6,0.5)] hover:-translate-y-1 relative"
-            >
-              Connect With Our Team
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+          </div>
+
+          {/* Senior Care Packages */}
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center">
+                <HeartPulse className="w-5 h-5" />
+              </div>
+              <h3 className="text-2xl font-bold text-stone-900">Senior Care Packages</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { title: "Caring for Senior's Homes", price: "Custom", color: "bg-teal-100 text-teal-600", desc: "Home maintenance, cleaning & daily upkeep for elderly residents" },
+                { title: "Supporting Senior's Health", price: "₹29,000/mo", color: "bg-amber-100 text-amber-600", desc: "24/7 caretaker, medication management & health checkups" },
+                { title: "Legal Help for Seniors", price: "Custom", color: "bg-cyan-100 text-cyan-600", desc: "Property documentation, will drafting & legal advisory" },
+                { title: "24/7 Senior Care Support", price: "₹35,000/mo", color: "bg-emerald-100 text-emerald-600", desc: "Round-the-clock nursing, post-surgery & palliative care" },
+              ].map((pkg, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                  className="package-card bg-white rounded-2xl p-6 text-center group cursor-pointer"
+                >
+                  <div className={`w-14 h-14 rounded-full ${pkg.color} flex items-center justify-center mx-auto mb-5`}>
+                    <HeartPulse className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-lg font-bold text-stone-900 mb-2">{pkg.title}</h3>
+                  <p className="text-stone-500 text-sm mb-3 leading-relaxed">{pkg.desc}</p>
+                  <p className="text-teal-600 font-bold text-lg mb-4">{pkg.price}</p>
+                  <Link href="/packages" className="text-sm text-stone-500 group-hover:text-teal-600 font-semibold transition-colors flex items-center justify-center gap-1">
+                    View Details <ChevronRight className="w-3 h-3" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Property Management Packages */}
+          <div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center">
+                <Building2 className="w-5 h-5" />
+              </div>
+              <h3 className="text-2xl font-bold text-stone-900">Property Management — Yearly Subscriptions</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Essential",
+                  price: "₹18,000",
+                  period: "/year",
+                  bestFor: "Locked Plots / Apartments",
+                  visits: "1 Visit / Month",
+                  popular: false,
+                  features: ["50-Point Health Audit", "Bill & Tax Payments", "Monsoon Prep Check", "Interior Airing Out", "Yard/Garden Cleanup (Quarterly)"],
+                  color: "border-stone-200",
+                  bg: "bg-white",
+                },
+                {
+                  title: "Premium",
+                  price: "₹32,000",
+                  period: "/year",
+                  bestFor: "Independent Villas",
+                  visits: "2 Visits / Month",
+                  popular: true,
+                  features: ["50-Point Health Audit", "Bill & Tax Payments", "Monsoon Prep Check", "Interior Airing Out", "Cobweb Cleanup (Quarterly)", "Dust Cleanup / Dry Sweep (Quarterly)", "Yard/Garden Cleanup (Monthly)", "Pest Control Oversight", "Pre-Arrival Cleaning (1/Year)", "Key Holding Service"],
+                  color: "border-amber-400 ring-2 ring-amber-400/20",
+                  bg: "bg-gradient-to-b from-amber-50/50 to-white",
+                },
+                {
+                  title: "Concierge",
+                  price: "₹55,000",
+                  period: "/year",
+                  bestFor: "Luxury Estates",
+                  visits: "4 Visits / Month",
+                  popular: false,
+                  features: ["50-Point Health Audit", "Bill & Tax Payments", "Monsoon Prep Check", "Interior Airing Out", "Cobweb Cleanup (Monthly)", "Dust Cleanup / Dry Sweep (Monthly)", "Yard/Garden Cleanup (Monthly)", "Pest Control Oversight", "Pre-Arrival Cleaning (Unlimited)", "Key Holding Service", "Grocery Stocking"],
+                  color: "border-teal-300",
+                  bg: "bg-gradient-to-b from-teal-50/30 to-white",
+                },
+              ].map((pkg, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                  className={`relative rounded-2xl p-6 border-2 ${pkg.color} ${pkg.bg} shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col`}
+                >
+                  {pkg.popular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-amber-500 text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">Most Popular</div>
+                  )}
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-black text-stone-900 uppercase tracking-wide mb-1">{pkg.title}</h3>
+                    <p className="text-stone-500 text-sm">Best For: {pkg.bestFor}</p>
+                  </div>
+                  <div className="text-center mb-6 pb-6 border-b border-stone-100">
+                    <span className="text-4xl font-black text-stone-900">{pkg.price}</span>
+                    <span className="text-stone-500 text-lg"> {pkg.period}</span>
+                    <p className="text-teal-600 font-semibold text-sm mt-2">{pkg.visits}</p>
+                  </div>
+                  <ul className="space-y-3 mb-6 flex-grow">
+                    {pkg.features.map((f, j) => (
+                      <li key={j} className="flex items-start gap-2 text-sm">
+                        <Check className="w-4 h-4 text-teal-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-stone-600">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href="/contact" className={`block text-center py-3 rounded-xl font-bold transition-all ${pkg.popular ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg' : 'bg-stone-100 hover:bg-teal-600 hover:text-white text-stone-700'}`}>
+                    Get Started
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-stone-400 text-sm text-center mt-6">* Fees are subject to property size (sq. ft.) and location.</p>
+          </div>
+
+          <div className="text-center mt-10">
+            <Link href="/packages" className="px-8 py-3.5 bg-gradient-to-r from-teal-600 to-teal-500 text-white font-bold rounded-lg shadow-lg inline-block">
+              View All Packages
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
+
+      {/* ============ HERITAGE SECTION ============ */}
+      <section className="py-24 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0%2030h60M30%200v60%22%20stroke%3D%22%23ffffff%22%20stroke-opacity%3D%220.03%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E')] opacity-50"></div>
+        <div className="container mx-auto px-4 md:px-8 xl:px-12 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="lg:w-1/2">
+              <div className="section-label mb-4 border-teal-500/30 bg-teal-500/10 text-teal-400">Our Heritage</div>
+              <h2 className="text-3xl md:text-5xl font-serif font-black mb-6">
+                A Journey Marked by Property Excellence & Trust
+              </h2>
+              <p className="text-stone-300 text-lg leading-relaxed mb-8">
+                Propkeep Kerala is not just a service; it is built on a solid foundation of professional expertise and dedicated care. We bring years of disciplined property management and senior wellness experience to your doorstep in Kerala.
+              </p>
+              <Link href="/about" className="px-8 py-3.5 bg-gradient-to-r from-teal-500 to-teal-400 text-stone-900 font-bold rounded-lg shadow-lg inline-block hover:shadow-xl transition-all">
+                Learn More
+              </Link>
+            </div>
+            <div className="lg:w-1/2 relative">
+              <Image
+                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Heritage"
+                width={800} height={500}
+                className="rounded-2xl shadow-2xl object-cover h-[400px] w-full"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-teal-600 text-white p-6 rounded-xl shadow-xl">
+                <p className="text-3xl font-black">100+</p>
+                <p className="text-sm font-semibold text-teal-100">NRI Families Served</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ BLOG & NEWS ============ */}
+      <section className="py-24 bg-stone-50">
+        <div className="container mx-auto px-4 md:px-8 xl:px-12">
+          <div className="text-center mb-16">
+            <div className="section-label mx-auto w-fit mb-4">Blog & News</div>
+            <h2 className="text-3xl md:text-5xl font-serif font-black text-stone-900 mb-4">Expert Tips & Updates</h2>
+            <p className="text-stone-600 text-lg max-w-2xl mx-auto">
+              Our blog shares expert advice, industry trends, and actionable strategies for NRI property management and senior care.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Essential Property Maintenance Checklist for NRIs", date: "May 2025", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+              { title: "How to Ensure Quality Senior Care from Abroad", date: "April 2025", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+              { title: "Legal Tips for Kerala Property Owners Living Abroad", date: "March 2025", img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
+            ].map((post, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer"
+              >
+                <div className="h-48 relative overflow-hidden">
+                  <Image src={post.img} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="p-6">
+                  <p className="text-teal-600 text-sm font-semibold mb-2">{post.date}</p>
+                  <h3 className="text-lg font-bold text-stone-900 mb-3 group-hover:text-teal-600 transition-colors">{post.title}</h3>
+                  <span className="text-teal-600 font-semibold text-sm flex items-center gap-1">
+                    Learn more <ChevronRight className="w-4 h-4" />
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ WHATSAPP CTA STRIP ============ */}
+      <section className="py-12 bg-gradient-to-r from-teal-600 to-cyan-600">
+        <div className="container mx-auto px-4 md:px-8 xl:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-white">
+            <h3 className="text-2xl font-bold mb-1">Need Quick Assistance?</h3>
+            <p className="text-teal-100">Get quick responses about senior care or property management directly from our experts on WhatsApp.</p>
+          </div>
+          <a
+            href="https://wa.me/919495959569"
+            className="whatsapp-cta text-white font-bold px-8 py-4 rounded-full flex items-center gap-3 shadow-xl"
+          >
+            <MessageCircle className="w-6 h-6" />
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
+      </section>
+      
     </div>
   );
 }

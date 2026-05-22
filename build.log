@@ -1,0 +1,69 @@
+
+> propkeep@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+Turbopack build encountered 2 warnings:
+[next]/internal/font/google/0c89a48fa5027cee-s.p.woff2
+Error while requesting resource
+Connection timed out when requesting https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2
+
+
+[next]/internal/font/google/65c558afe41e89d6-s.woff2
+Error while requesting resource
+There was an issue requesting https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTjYgEM86xRbPQ.woff2
+
+
+
+> Build error occurred
+Error: Turbopack build failed with 2 errors:
+[next]/internal/font/google/playfair_display_dc3b86c2.module.css:7:8
+Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  [90m 5 |[0m   font-weight: [35m400[0m [35m900[0m;
+  [90m 6 |[0m   font-display: swap;
+[31m[1m>[0m [90m 7 |[0m   src: url(@vercel/turbopack-next/internal/font/google/font?{%[35m22[0murl%[35m22[0m..[35m.[0m
+  [90m   |[0m        [31m[1m^[0m
+  [90m 8 |[0m   unicode-range: [33mU[0m+[35m0301[0m, [33mU[0m+[35m0400[0m-[35m045[0m[33mF[0m, [33mU[0m+[35m0490[0m-[35m0491[0m, [33mU[0m+[35m04[0m[33mB0[0m-[35m04[0m[33mB1[0m, [33mU[0m+[35m2116[0m;
+  [90m 9 |[0m }
+  [90m10 |[0m [90m/* vietnamese */[0m
+
+Import map: Resolved by import map
+
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/playfair_display_dc3b86c2.module.css
+    [next]/internal/font/google/playfair_display_dc3b86c2.js
+    ./app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[next]/internal/font/google/space_grotesk_154b09cb.module.css:25:8
+Module not found: Can't resolve '@vercel/turbopack-next/internal/font/google/font'
+  [90m23 |[0m   font-weight: [35m300[0m [35m700[0m;
+  [90m24 |[0m   font-display: swap;
+[31m[1m>[0m [90m25 |[0m   src: url(@vercel/turbopack-next/internal/font/google/font?{%[35m22[0murl%[35m22[0m..[35m.[0m
+  [90m   |[0m        [31m[1m^[0m
+  [90m26 |[0m   unicode-range: [33mU[0m+[35m0000[0m-[35m00[0m[33mFF[0m, [33mU[0m+[35m0131[0m, [33mU[0m+[35m0152[0m-[35m0153[0m, [33mU[0m+[35m02[0m[33mBB[0m-[35m02[0m[33mBC[0m, [33mU[0m+[35m02[0m[33mC6[0m..[33m.[0m
+  [90m27 |[0m }
+  [90m28 |[0m @font-face {
+
+Import map: Resolved by import map
+
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/space_grotesk_154b09cb.module.css
+    [next]/internal/font/google/space_grotesk_154b09cb.js
+    ./app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> ([next]/internal/font/google/playfair_display_dc3b86c2.module.css:7:8)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> ([next]/internal/font/google/space_grotesk_154b09cb.module.css:25:8)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)

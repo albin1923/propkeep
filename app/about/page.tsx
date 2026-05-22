@@ -1,104 +1,107 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { CheckCircle2, ShieldCheck, HeartPulse } from "lucide-react";
 
 export default function About() {
   return (
-    <div className="pt-32 min-h-screen container mx-auto px-4 md:px-8 z-10 relative">
+    <div className="pt-32 pb-24 min-h-screen container mx-auto px-4 md:px-8 xl:px-12 bg-stone-50 text-stone-900 z-10 relative overflow-hidden">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, type: "spring" }}
+        className="text-center max-w-4xl mx-auto mb-16"
       >
-        <span className="text-amber-500 font-bold tracking-widest uppercase text-sm mb-2 block">Our Standard</span>
-        <h1 className="text-5xl md:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-600">
-          The PropKeep Formula
+        <span className="text-amber-600 font-bold tracking-widest uppercase text-sm mb-2 block">About Propkeep Kerala</span>
+        <h1 className="text-4xl md:text-6xl font-serif font-black mb-6 text-stone-900 leading-tight">
+          Your Trusted Partner in Kerala
         </h1>
+        <p className="text-lg md:text-xl text-stone-600 leading-relaxed font-light">
+          Propkeep Kerala is an integrated solution to safeguard your most valuable assets: your parents & property. We serve as a point of contact for NRIs offering comprehensive senior care, property management, and legal protection to ensure total peace of mind.
+        </p>
       </motion.div>
-      <motion.p 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.8 }}
-        className="text-xl text-stone-300 max-w-3xl leading-relaxed mb-16 font-light"
-      >
-        At PropKeep, we are committed to providing world-class property management specifically designed for NRIs. 
-        Your home in Kerala is more than just property—it's a piece of your heart, and we report its health with absolute transparency.
-      </motion.p>
 
-      <div className="grid md:grid-cols-2 gap-12 mb-16">
+      <div className="flex flex-col lg:flex-row gap-16 items-center mb-24">
         <motion.div 
-          initial={{ opacity: 0, y: 50, rotateX: 10 }}
-          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-          transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="space-y-6 perspective-1000"
+          className="lg:w-1/2 relative z-10"
         >
-          <div className="glass-card p-8 rounded-3xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 blur-3xl rounded-full group-hover:bg-amber-500/20 transition-all duration-700"></div>
-            <h3 className="text-2xl font-bold text-white mb-4 relative z-10">1. Executive Summaries</h3>
-            <p className="text-stone-400 mb-6 relative z-10 font-light">Every inspection ends with an immediate "Green Signal" or targeted action points right to your phone.</p>
-            <div className="glass-panel p-5 rounded-2xl relative z-10 mb-4 border-l-4 border-l-emerald-500 shadow-[0_5px_15px_rgba(16,185,129,0.1)]">
-              <div className="flex items-center gap-2 mb-2 font-bold text-stone-200 text-sm">Property Status: <span className="text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]">🟢 Healthy</span></div>
-              <p className="text-sm text-stone-400 italic">"The house was aired out for 30 minutes. All 50 inspection points passed. No anomalies found."</p>
-            </div>
-            <div className="glass-panel p-5 rounded-2xl relative z-10 border-l-4 border-l-amber-500 shadow-[0_5px_15px_rgba(245,158,11,0.1)]">
-              <div className="flex items-center gap-2 mb-2 font-bold text-stone-200 text-sm">Property Status: <span className="text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">🟡 Attention Needed</span></div>
-              <p className="text-sm text-stone-400 italic">"Noticed slight dampness on the master bedroom's north wall. Awaiting your approval for sealant."</p>
-            </div>
-          </div>
-
-          <div className="glass-card p-8 rounded-3xl relative overflow-hidden group">
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-blue-500/10 blur-3xl rounded-full group-hover:bg-blue-500/20 transition-all duration-700"></div>
-            <h3 className="text-2xl font-bold text-white mb-4 relative z-10">2. Next Scheduled Visit & Recommendations</h3>
-            <p className="text-stone-400 mb-6 relative z-10 font-light">We don't just react; we plan. We provide detailed estimates for proactive maintenance.</p>
-            <div className="inline-block bg-gradient-to-r from-amber-600/20 to-transparent border border-amber-500/30 text-amber-400 font-bold px-5 py-3 rounded-xl text-sm shadow-[0_0_20px_rgba(217,119,6,0.15)] relative z-10">
-              Focus Area: Pre-monsoon roof cleaning & gutter check
-            </div>
-          </div>
+          <div className="absolute top-0 -left-4 w-24 h-24 bg-amber-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+          <div className="absolute top-0 -right-4 w-24 h-24 bg-emerald-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+          <Image 
+            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+            alt="Beautiful Home in Kerala" 
+            width={800} 
+            height={600} 
+            className="rounded-3xl shadow-2xl relative z-10 object-cover h-[500px]"
+          />
         </motion.div>
-
+        
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, type: "spring", stiffness: 80 }}
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="space-y-6"
+          className="lg:w-1/2"
         >
-          <div className="glass-card p-10 md:p-12 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden group border border-amber-500/20 hover:border-amber-500/50">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2000&auto=format&fit=crop')] opacity-[0.03] object-cover mix-blend-overlay pointer-events-none"></div>
-            <div className="relative z-10">
-              <h2 className="text-3xl font-black mb-5 text-transparent bg-clip-text bg-gradient-to-r from-stone-100 to-stone-400">Pro-Tips for Delivery</h2>
-              <p className="text-stone-400 mb-10 font-light text-lg">We understand how NRIs want their updates. We respect your time and peace of mind.</p>
-              
-              <ul className="space-y-8">
-                <li className="flex gap-5 group/item">
-                  <div className="bg-amber-500/20 shadow-[0_0_15px_rgba(217,119,6,0.3)] w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform duration-500 border border-amber-500/30 text-2xl">📄</div>
-                  <div>
-                    <h4 className="font-bold text-xl text-stone-200 mb-1">WhatsApp PDF Reports</h4>
-                    <p className="text-sm text-stone-500 leading-relaxed font-light">Receive comprehensive PDF audits via WhatsApp for the convenience of seeing the "Green Signal" instantly.</p>
-                  </div>
-                </li>
-                <li className="flex gap-5 group/item">
-                  <div className="bg-amber-500/20 shadow-[0_0_15px_rgba(217,119,6,0.3)] w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform duration-500 border border-amber-500/30 text-2xl">🎙️</div>
-                  <div>
-                    <h4 className="font-bold text-xl text-stone-200 mb-1">Quick Voice Notes</h4>
-                    <p className="text-sm text-stone-500 leading-relaxed font-light">A personal 30-second follow-up voice note breaking down the essentials effortlessly.</p>
-                  </div>
-                </li>
-                <li className="flex gap-5 group/item">
-                  <div className="bg-amber-500/20 shadow-[0_0_15px_rgba(217,119,6,0.3)] w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform duration-500 border border-amber-500/30 text-2xl">🎥</div>
-                  <div>
-                    <h4 className="font-bold text-xl text-stone-200 mb-1">Video Walkthroughs</h4>
-                    <p className="text-sm text-stone-500 leading-relaxed font-light">For Premium clients, a 1-minute narrated walkthrough video gives you a first-hand look at your home.</p>
-                  </div>
-                </li>
-              </ul>
+          <h2 className="text-3xl lg:text-4xl font-black mb-6 text-stone-900">Why choose us?</h2>
+          <p className="text-stone-600 text-lg mb-8 leading-relaxed">
+            Living abroad comes with its challenges, especially when worrying about aging parents and unmonitored properties back home. Our mission is to bridge that gap with reliable, verified, and professional care.
+          </p>
+          
+          <div className="space-y-6">
+            <div className="flex gap-4">
+              <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <ShieldCheck className="w-6 h-6 text-amber-600" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-stone-900 mb-2">Verified Professionals</h3>
+                <p className="text-stone-600">Every staff member, from our property managers to senior caregivers, undergoes rigorous background checks and training.</p>
+              </div>
             </div>
             
-            <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[100px] pointer-events-none group-hover:bg-amber-600/20 transition-all duration-1000"></div>
+            <div className="flex gap-4">
+              <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <HeartPulse className="w-6 h-6 text-emerald-600" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-stone-900 mb-2">Empathy at the Core</h3>
+                <p className="text-stone-600">Handling senior care isn't just a business for us. Empathy, companionship, and extensive mental wellness check-ins form the core of our daily interactions.</p>
+              </div>
+            </div>
+            
+            <div className="flex gap-4">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <CheckCircle2 className="w-6 h-6 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-stone-900 mb-2">Transparent Updates</h3>
+                <p className="text-stone-600">No more guessing. Receive regular WhatsApp reports, voice notes, and video walkthroughs documenting your property's status or your parent's wellness.</p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
+
+      <div className="bg-stone-900 text-white rounded-3xl p-10 md:p-16 text-center max-w-5xl mx-auto shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl"></div>
+        
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 relative z-10">Experience True Peace of Mind</h2>
+        <p className="text-xl text-stone-300 mb-10 max-w-2xl mx-auto relative z-10">
+          Our team is on standby to support your individual requirements. Connect with us today to find the perfect plan.
+        </p>
+        
+        <Link href="/contact" className="inline-block px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl transition-all shadow-lg relative z-10 text-lg">
+          Schedule a Consultation
+        </Link>
+      </div>
+      
     </div>
   );
 }
