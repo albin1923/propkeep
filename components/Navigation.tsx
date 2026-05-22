@@ -47,10 +47,6 @@ const navItems: NavItem[] = [
   {
     label: "About Us",
     href: "/about",
-    dropdown: [
-      { label: "About Founder", href: "/about" },
-      { label: "Dreamkey Builders", href: "/dreamkey-builders" },
-    ],
   },
   {
     label: "Contact Us",
