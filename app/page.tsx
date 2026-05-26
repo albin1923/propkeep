@@ -120,7 +120,7 @@ export default function Home() {
               </div>
               
               <p className="text-lg text-stone-600 mb-8 max-w-xl leading-relaxed">
-                propkeep kerala is an integrated solution to safegaurd your most valuable assets : your parents and your property. we serve as point of contact for nris offering comprehensive senior care , property management and legal protectionto ensure total peace of mind
+                Propkeep Kerala is an integrated solution to safeguard your most valuable assets: your parents and your property. We serve as a point of contact for NRIs, offering comprehensive senior care, property management, and legal protection to ensure total peace of mind.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
