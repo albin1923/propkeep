@@ -112,7 +112,7 @@ export default function Navigation() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <Link 
             href="/" 
-            className="z-50 relative flex items-center transition-opacity hover:opacity-90" 
+            className="z-50 relative flex items-center gap-3 transition-opacity hover:opacity-90" 
             onClick={closeMenu}
           >
             <Image 
@@ -123,6 +123,9 @@ export default function Navigation() {
               className="h-10 w-auto object-contain"
               priority
             />
+            <span className="text-2xl font-extrabold tracking-tight text-stone-900 hidden sm:block">
+              PROP<span className="text-teal-600">KEEP</span>
+            </span>
           </Link>
           
           {/* Desktop Nav */}

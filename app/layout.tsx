@@ -85,8 +85,11 @@ export default function RootLayout({
               
               {/* Column 1: About */}
               <div>
-                <Link href="/" className="inline-block mb-6 relative">
+                <Link href="/" className="inline-flex items-center gap-3 mb-6 relative hover:opacity-90 transition-opacity">
                   <Image src="/images/logo.png" alt="Propkeep Kerala Logo" width={160} height={40} className="h-10 w-auto object-contain brightness-0 invert" priority />
+                  <span className="text-2xl font-extrabold text-white">
+                    PROP<span className="text-teal-400">KEEP</span>
+                  </span>
                 </Link>
                 <p className="text-stone-400 leading-relaxed mb-6 text-sm">
                   Propkeep Kerala is an integrated solution for Senior Care, Property Management, and Legal Protection, designed specifically for the NRI community.
