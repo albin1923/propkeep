@@ -96,11 +96,28 @@ export default function Home() {
                 <span>Integrated Solutions for NRIs</span>
               </div>
               
-              <h1 className="text-4xl md:text-5xl xl:text-[3.5rem] font-serif font-black mb-6 text-stone-900 leading-[1.15]">
-                Solution.<br />
-                <span className="text-teal-600">Safeguard Your Most</span>{" "}
-                <span className="text-amber-500">Valuable Assets</span>
-              </h1>
+              <div className="mb-6 space-y-3">
+                <h1 className="text-4xl md:text-5xl xl:text-[3.5rem] font-serif font-black text-stone-900 leading-[1.15] mb-6">
+                  Our <span className="text-teal-600">Solutions</span>
+                </h1>
+                <ul className="text-xl md:text-2xl font-bold text-stone-800 space-y-3">
+                  <li className="flex items-center gap-3">
+                    <span className="text-amber-500 font-black">1.</span> Property Management Services
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="text-amber-500 font-black">2.</span> Property Maintenance
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="text-amber-500 font-black">3.</span> Property Legal Solutions
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="text-amber-500 font-black">4.</span> Aged Care Services
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="text-amber-500 font-black">5.</span> Tenant Sourcing
+                  </li>
+                </ul>
+              </div>
               
               <p className="text-lg text-stone-600 mb-8 max-w-xl leading-relaxed">
                 We understand the silent worry of living abroad while your parents and property are back home. Propkeep Kerala is your single, trusted partner, offering an integrated system of compassionate senior care, secure property management, and expert legal protection — all designed to protect your legacy and loved ones.

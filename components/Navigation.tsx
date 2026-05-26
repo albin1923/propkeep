@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
 
 const XTwitterIcon = ({ className }: { className?: string }) => (
@@ -111,11 +112,17 @@ export default function Navigation() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <Link 
             href="/" 
-            className="text-2xl font-extrabold tracking-tight z-50 relative transition-colors duration-300 text-stone-900 flex items-center gap-1" 
+            className="z-50 relative flex items-center transition-opacity hover:opacity-90" 
             onClick={closeMenu}
           >
-            PROP<span className="text-teal-600">KEEP</span>
-            <span className="text-xs font-medium text-stone-400 ml-1 hidden sm:inline tracking-widest uppercase">Kerala</span>
+            <Image 
+              src="/images/logo.png" 
+              alt="Propkeep Kerala Logo" 
+              width={160} 
+              height={40} 
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
           
           {/* Desktop Nav */}
