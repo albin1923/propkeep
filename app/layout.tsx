@@ -67,8 +67,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="font-sans bg-white text-stone-900 min-h-screen flex flex-col antialiased relative selection:bg-teal-500/30 selection:text-teal-900">
+    <html lang="en" className="scroll-smooth overflow-x-hidden">
+      <body className="font-sans bg-white text-stone-900 min-h-screen flex flex-col antialiased relative selection:bg-teal-500/30 selection:text-teal-900 overflow-x-hidden">
         {/* Subtle Background Pattern */}
         <div className="complex-bg"></div>
         
