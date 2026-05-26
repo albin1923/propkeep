@@ -120,7 +120,7 @@ export default function Home() {
               </div>
               
               <p className="text-lg text-stone-600 mb-8 max-w-xl leading-relaxed">
-                We understand the silent worry of living abroad while your parents and property are back home. Propkeep Kerala is your single, trusted partner, offering an integrated system of compassionate senior care, secure property management, and expert legal protection — all designed to protect your legacy and loved ones.
+                propkeep kerala is an integrated solution to safegaurd your most valuable assets : your parents and your property. we serve as point of contact for nris offering comprehensive senior care , property management and legal protectionto ensure total peace of mind
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
